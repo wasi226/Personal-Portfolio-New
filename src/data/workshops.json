@@ -1,0 +1,36 @@
+{
+  "name": "Workshop",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Workshop or Bootcamp title"
+    },
+    "organization": {
+      "type": "string",
+      "description": "Conducting organization"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of workshop"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the workshop"
+    },
+    "certificate_url": {
+      "type": "string",
+      "description": "Link to the certificate (optional)"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "URL for the organization's logo"
+    }
+  },
+  "required": [
+    "title",
+    "organization",
+    "date"
+  ]
+}

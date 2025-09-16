@@ -1,0 +1,32 @@
+{
+  "name": "Certification",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Certification title"
+    },
+    "issuer": {
+      "type": "string",
+      "description": "Issuing organization"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of issue"
+    },
+    "credential_url": {
+      "type": "string",
+      "description": "Link to the credential"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "URL for the issuer's logo"
+    }
+  },
+  "required": [
+    "title",
+    "issuer",
+    "issue_date"
+  ]
+}
