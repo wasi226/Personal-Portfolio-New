@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
-import { FaInstagram } from "react-icons/Fa";
+import { FaInstagram } from "react-icons/fa";
 
 import {
   Mail,
