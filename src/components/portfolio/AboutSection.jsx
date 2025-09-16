@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/Badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Server, Database, Cloud, Brush, PenTool, GitBranch, Terminal, Layers,Brain } from "lucide-react";
 import SkillCard from "./SkillCard";
