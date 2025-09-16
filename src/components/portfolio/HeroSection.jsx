@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { ArrowDown, Download, Github, Linkedin } from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
 import { FaInstagram } from "react-icons/fa";

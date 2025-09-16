@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { ExternalLink, Github, Eye } from "lucide-react";
 import { Projects } from "@/entities/Project"; // Your updated Projects array
 import { motion } from "framer-motion";

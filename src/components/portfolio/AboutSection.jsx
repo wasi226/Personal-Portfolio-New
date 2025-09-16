@@ -1,10 +1,10 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/Badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/Card";
 import { Code, Server, Database, Cloud, Brush, PenTool, GitBranch, Terminal, Layers,Brain } from "lucide-react";
 import SkillCard from "./SkillCard";
-import { FaJava } from "react-icons/fa6";
+import { FaJava } from "react-icons/Fa6";
 import { SiThealgorithms,SiMongodb,SiExpress,SiJavascript } from "react-icons/si";
 import { TiHtml5 } from "react-icons/ti";
 
