@@ -4,6 +4,8 @@ import img3 from '@/assets/cy.jpg'
 import img4 from '@/assets/Py.jpg'
 import img5 from '@/assets/React.jpg'
 import img6 from '@/assets/front.jpg'
+import img7 from '@/assets/MERN Stack Certificate.png'
+import img8 from '@/assets/Naukri.jpg'
 
 
 
@@ -67,5 +69,25 @@ export const Certifications = [
       "Creating interactive and styled web pages using HTML, CSS, and JavaScript.",
     certificate_url: "#",
     certificate_img: img6, // 👈 hover image
+  },
+  {
+    id: 8,
+    title: "Certificate of Merit",
+    issuer: "Naukri.com",
+    issue_date: "2025-09-29",
+    description:
+      "Creating interactive and styled web pages using HTML, CSS, and JavaScript.",
+    certificate_url: "#",
+    certificate_img: img8, // 👈 hover image
+  },
+  {
+    id: 7,
+    title: "MERN Full Stack Development",
+    issuer: "Sheryians Coding School",
+    issue_date: "2025-04-30",
+    description:
+      "Comprehensive training in MongoDB, Express.js, React, and Node.js for building full-stack web applications.",
+    certificate_url: "#",
+    certificate_img: img7, // 👈 hover image
   },
 ];

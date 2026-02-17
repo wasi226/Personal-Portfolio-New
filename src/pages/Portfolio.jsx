@@ -1,53 +1,97 @@
+import React, { useState } from "react";
 
-import React, { useEffect } from "react";
 import Navigation from "../components/portfolio/Navigation";
 import HeroSection from "../components/portfolio/HeroSection";
 import AboutSection from "../components/portfolio/AboutSection";
 import ProjectsSection from "../components/portfolio/ProjectsSection";
 import CertificationsSection from "../components/portfolio/CertificationsSection";
+import GalleryModal from "../components/portfolio/GalleryModal";
 import WorkshopsSection from "../components/portfolio/WorkshopsSection";
 import ContactSection from "../components/portfolio/ContactSection";
 import Footer from "../components/portfolio/Footer";
 
 export default function Portfolio() {
-  useEffect(() => {
-    // Add smooth scrolling behavior to the document
-    document.documentElement.style.scrollBehavior = "smooth";
-
-    return () => {
-      document.documentElement.style.scrollBehavior = "";
-    };
-  }, []);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   return (
-    <div className="relative overflow-x-hidden min-h-screen bg-gray-900 bg-particles">
-      {/* Background mesh */}
-      <div className="absolute inset-0 bg-mesh opacity-10" />
+    <div className="relative w-full bg-black text-white">
 
-      {/* Floating elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl animate-float" />
-      <div
-        className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-xl animate-float"
-        style={{ animationDelay: "2s" }}
-      />
-      <div
-        className="absolute top-1/2 left-1/4 w-20 h-20 bg-cyan-500/10 rounded-full blur-xl animate-float"
-        style={{ animationDelay: "4s" }}
-      />
+      {/* Navigation stays fixed */}
+      <Navigation onGalleryOpen={() => setIsGalleryOpen(true)} />
 
-      {/* Content */}
-      <div className="relative z-10">
-        <Navigation />
-        <main className="pt-16">
+      <div className="particles-overlay pointer-events-none fixed inset-0 z-[5]" />
+
+      <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
+
+      {/* Main Scroll Container */}
+      <main className="w-full overflow-y-auto scroll-smooth pt-16">
+
+        {/* HERO */}
+        <section className="snap-start h-screen relative">
           <HeroSection />
-          <AboutSection />
-          <ProjectsSection />
-          <CertificationsSection />
-          <WorkshopsSection />
-          <ContactSection />
-        </main>
-        <Footer />
-      </div>
+        </section>
+
+        {/* ABOUT */}
+        <section className="snap-start min-h-screen relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#0b0b0f] z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,0,0,0.18),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent_50%)] z-1" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_70px] opacity-20 z-2" />
+          <div className="relative z-20">
+            <AboutSection />
+          </div>
+        </section>
+
+        {/* PROJECTS */}
+        <section className="snap-start min-h-screen relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#0b0b0f] z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,0,0,0.18),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent_50%)] z-1" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_70px] opacity-20 z-2" />
+          <div className="relative z-20">
+            <ProjectsSection />
+          </div>
+        </section>
+
+        {/* CERTIFICATIONS */}
+        <section className="snap-start min-h-screen relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#0b0b0f] z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,0,0,0.18),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent_50%)] z-1" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_70px] opacity-20 z-2" />
+          <div className="relative z-20">
+            <CertificationsSection />
+          </div>
+        </section>
+
+        {/* WORKSHOPS */}
+        <section className="snap-start min-h-screen relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#0b0b0f] z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,0,0,0.18),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent_50%)] z-1" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_70px] opacity-20 z-2" />
+          <div className="relative z-20">
+            <WorkshopsSection />
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section className="snap-start min-h-screen relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#0b0b0f] z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,0,0,0.18),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent_50%)] z-1" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_70px] opacity-20 z-2" />
+          <div className="relative z-20">
+            <ContactSection />
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <section className="snap-start relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#0b0b0f] z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,0,0,0.18),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent_50%)] z-1" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100%_70px] opacity-20 z-2" />
+          <div className="relative z-20">
+            <Footer />
+          </div>
+        </section>
+
+      </main>
     </div>
   );
 }

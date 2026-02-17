@@ -1,168 +1,225 @@
+// import React from "react";
+// import { motion } from "framer-motion";
+// import ParticlesBackground from "./ParticlesBackground";
+// import { Download } from "lucide-react";
+
+// export default function HeroSection() {
+//   return (
+//     <section className="relative h-screen w-full snap-start overflow-hidden">
+
+//       {/* Background Video */}
+//       <video
+//         autoPlay
+//         muted
+//         loop
+//         playsInline
+//         className="absolute inset-0 w-full h-full object-cover"
+//       >
+//         <source src="/assets/tesla-bg.mp4" type="video/mp4" />
+//       </video>
+
+//       {/* Luxury Dark Gradient Overlay */}
+//       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 backdrop-blur-[2px]" />
+
+//       {/* 3D Particles */}
+//       <div className="absolute inset-0">
+//         <ParticlesBackground />
+//       </div>
+
+//       {/* Content */}
+//       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+
+//         {/* Small Premium Label */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 30 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 1 }}
+//           className="mb-6 tracking-[0.5em] text-xs text-gray-400 uppercase font-medium"
+//         >
+//           Software Engineering
+//         </motion.div>
+
+//         {/* Main Heading */}
+//         <motion.h1
+//           initial={{ opacity: 0, y: 80 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 1.2 }}
+//           className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-white"
+//         >
+//           Engineering the
+//           <span className="block bg-gradient-to-r from-white via-red-500 to-white bg-clip-text text-transparent">
+//             Future.
+//           </span>
+//         </motion.h1>
+
+//         {/* Animated Accent Line */}
+//         <motion.div
+//           initial={{ width: 0 }}
+//           animate={{ width: "120px" }}
+//           transition={{ delay: 0.6, duration: 1 }}
+//           className="h-[2px] bg-red-600 mt-8 mb-8"
+//         />
+
+//         {/* Description */}
+//         <motion.p
+//           initial={{ opacity: 0, y: 40 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 0.8, duration: 1 }}
+//           className="max-w-2xl text-lg md:text-xl text-gray-400 leading-relaxed"
+//         >
+//           I design automation-first systems that scale with precision,
+//           performance and clean engineering standards.
+//         </motion.p>
+
+//         {/* Buttons */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 40 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 1, duration: 1 }}
+//           className="mt-12 flex gap-6"
+//         >
+//           {/* Primary Button */}
+//           <button className="relative px-10 py-3 uppercase tracking-widest text-sm font-semibold overflow-hidden group border border-red-600">
+//             <span className="absolute inset-0 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+//             <span className="relative z-10 group-hover:text-white transition-colors duration-500">
+//               Explore Work
+//             </span>
+//           </button>
+
+//           {/* Resume Button */}
+//           <a
+//             href="/Wasi_Haider_Resume_Software_Engineering.pdf"
+//             download
+//             className="flex items-center px-10 py-3 border border-gray-600 uppercase tracking-widest text-sm font-semibold text-gray-300 hover:border-white hover:text-white transition-all duration-300"
+//           >
+//             <Download className="w-4 h-4 mr-2" />
+//             Resume
+//           </a>
+//         </motion.div>
+
+//       </div>
+//     </section>
+//   );
+// }
+
+
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
-import { ArrowDown, Download, Github, Linkedin } from "lucide-react";
-import { SiLeetcode } from "react-icons/si";
-import { FaInstagram } from "react-icons/fa";
-import image8 from '@/assets/WasiLogo.png'
-
+import ParticlesBackground from "./ParticlesBackground";
+import { Download } from "lucide-react";
 
 export default function HeroSection() {
-  const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+
+  // Scroll to Projects Section
+  const handleScrollToWork = () => {
+    const section = document.getElementById("projects");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center relative overflow-hidden bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] bg-[length:400%_400%] animate-gradient-x">
-      {/* Background Elements */}
+    <section className="relative h-screen w-full snap-start overflow-hidden">
+
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/assets/tesla-bg.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark Premium Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90 backdrop-blur-[2px]" />
+
+      {/* Particles */}
       <div className="absolute inset-0">
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.2 }}
-          transition={{ duration: 2 }}
-          className="absolute top-20 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl"
-        />
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 0.2 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl"
-        />
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1, opacity: 0.2 }}
-          transition={{ duration: 2, delay: 1 }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl"
-        />
+        <ParticlesBackground />
       </div>
 
-      <div className="container mx-auto px-6 text-center z-10">
-        {/* Profile Image */}
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+
+        {/* Intro Label */}
         <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="mb-8"
+          className="mb-6 tracking-[0.5em] text-xs text-gray-400 uppercase font-medium"
         >
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 6 }}
-            className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-1 glow-effect"
-          >
-            <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-4xl font-bold text-white overflow-hidden">
-              <img src={image8} alt="" className="h-full w-full object-cover" />
-            </div>
-          </motion.div>
+          Software Engineer
         </motion.div>
 
-        {/* Hero Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        {/* Main Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-          className="space-y-6"
+          transition={{ duration: 1.2 }}
+          className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 bg-clip-text text-transparent animate-text-gradient">
-              WASI HAIDER
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Driven by a passion for technology, I blend logic with{" "}
-            <span className="text-purple-400 font-semibold">
-            creativity to engineer digital tools
-            </span>{" "}
-            that merge
-            <span className="text-purple-400 font-semibold">
-              {" "}
-            beautiful design, seamless usability,
-            </span>{" "}
-            and
-            <span className="text-pink-400 font-semibold">
-              {" "}
-            impactful functionality.
-            </span>
-          </p>
+          <span className="text-white">Hi, I’m </span>
+          <span className="bg-gradient-to-r from-white via-red-500 to-white bg-clip-text text-transparent animate-gradient-x">
+            WASI HAIDER
+          </span>
+        </motion.h1>
+        {/* Full Stack Developer Label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 1 }}
+          className="mt-6 text-2xl md:text-3xl font-bold"
+        >
+          <span className="bg-gradient-to-r from-red-500 via-red-400 to-red-600 bg-clip-text text-transparent">
+            Full Stack Developer
+          </span>
         </motion.div>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
+          transition={{ delay: 0.6, duration: 1 }}
+          className="mt-8 max-w-3xl text-lg md:text-xl text-gray-300 leading-relaxed"
         >
-          <Button
-            onClick={() => scrollToSection("projects")}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-10 py-2 text-lg glow-effect transition-all duration-300 hover:scale-105 shimmer-effect cursor-pointer"
+          I engineer intelligent digital systems where logic meets creativity —
+          delivering scalable, automation-driven solutions that combine refined
+          design, seamless user experience, and high-performance architecture.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="mt-12 flex gap-6"
+        >
+
+          {/* View Work Button */}
+          <button
+            onClick={handleScrollToWork}
+            className="relative px-10 py-3 uppercase tracking-widest text-sm font-semibold overflow-hidden group border border-red-600"
           >
-            View My Work
-          </Button>
+            <span className="absolute inset-0 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+            <span className="relative z-10 group-hover:text-white transition-colors duration-500">
+              View My Work
+            </span>
+          </button>
+
+          {/* Resume Button */}
           <a
             href="/Wasi_Haider_Resume_Software_Engineering.pdf"
-            download="Wasi_Haider_Resume_Software_Engineering.pdf"
-            className="border-purple-500 text-purple-400 hover:bg-purple-500/10 px-10 py-2 text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center cursor-pointer rounded-lg border"
+            download
+            className="flex items-center px-10 py-3 border border-gray-600 uppercase tracking-widest text-sm font-semibold text-gray-300 hover:border-white hover:text-white transition-all duration-300"
           >
-            <Download className="w-5 h-5 mr-2" />
+            <Download className="w-4 h-4 mr-2" />
             Download Resume
           </a>
+
         </motion.div>
 
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.6 }}
-          className="flex justify-center space-x-6 mt-12"
-        >
-          {[
-            {
-              icon: Github,
-              href: "https://github.com/wasi226",
-              label: "GitHub",
-            },
-            {
-              icon: Linkedin,
-              href: "https://www.linkedin.com/in/wasi226/",
-              label: "LinkedIn",
-            },
-            {
-              icon: SiLeetcode,
-              href: "https://leetcode.com/u/wasi226/",
-              label: "Leetcode",
-            },
-            {
-              icon: FaInstagram,
-              href: "https://www.instagram.com/___haider___dotaxe22/",
-              label: "Instagram",
-            },
-          ].map((social) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              whileHover={{ scale: 1.2, rotate: 10 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-12 h-12 bg-gray-800/50 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-600 transition-all duration-300 glow-effect"
-              aria-label={social.label}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <social.icon className="w-6 h-6" />
-            </motion.a>
-          ))}
-        </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ y: 0 }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <ArrowDown className="w-6 h-6 text-gray-400" />
-      </motion.div>
     </section>
   );
 }

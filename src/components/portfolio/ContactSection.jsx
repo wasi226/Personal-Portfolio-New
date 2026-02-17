@@ -1,20 +1,12 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { FaInstagram } from "react-icons/fa";
-
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Github,
-  Linkedin,
-  Twitter,
-} from "lucide-react";
-
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -23,24 +15,38 @@ export default function ContactSection() {
     subject: "",
     message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      await emailjs.send(
+        "service_d1brc3d",
+        "template_svs4nyo", 
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        "0nO8capgIlr5E2Cmt"
+      );
 
-    alert("Thank you for your message! I'll get back to you soon.");
+      alert("Message sent successfully 🚀");
 
-    // Reset form but keep default values
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send message ❌");
+    }
 
     setIsSubmitting(false);
   };
@@ -73,17 +79,35 @@ export default function ContactSection() {
       href: "https://www.linkedin.com/in/wasi226/",
       label: "LinkedIn",
     },
-    { icon: FaInstagram, href: "https://www.instagram.com/___haider___dotaxe22/", label: "Instagram" },
+    {
+      icon: FaInstagram,
+      href: "https://www.instagram.com/___haider___dotaxe22/",
+      label: "Instagram",
+    },
   ];
 
   return (
-    <section id="contact" className="section-padding">
-      <div className="container mx-auto px-6 py-10">
+    <div id="contact" className="w-full py-20">
+      <div className="container mx-auto px-6 py-10 relative z-20 w-full">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6 text-white">
-            Get In Touch
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"></div>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight"
+          >
+            Get In<span className="text-red-600"> Touch</span>
+          </motion.h2>
+
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "120px" }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="h-[2px] bg-red-600 mx-auto mb-8"
+          ></motion.div>
+
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Ready to start your next project? Let's discuss how we can work
             together to bring your ideas to life.
@@ -91,31 +115,29 @@ export default function ContactSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
+          {/* LEFT SIDE */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">
+              <h3 className="text-2xl font-semibold text-white mb-6">
                 Let's Connect
               </h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
                 I'm always excited to work on new projects and collaborate with
-                amazing people. Whether you have a question, project idea, or
-                just want to say hello, feel free to reach out!
+                amazing people. Feel free to reach out!
               </p>
             </div>
 
-            {/* Contact Details */}
             <div className="space-y-6">
               {contactInfo.map((contact, index) => (
                 <div key={index} className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full flex items-center justify-center">
-                    <contact.icon className="w-6 h-6 text-purple-400" />
+                  <div className="w-12 h-12 bg-red-600/10 rounded-full flex items-center justify-center border border-red-500/20">
+                    <contact.icon className="w-6 h-6 text-red-400" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">{contact.label}</p>
                     <a
                       href={contact.href}
-                      className="text-white hover:text-purple-400 transition-colors font-medium"
+                      className="text-white hover:text-red-300 transition-colors font-medium"
                     >
                       {contact.value}
                     </a>
@@ -124,7 +146,6 @@ export default function ContactSection() {
               ))}
             </div>
 
-            {/* Social Links */}
             <div className="pt-8">
               <h4 className="text-lg font-semibold text-white mb-4">
                 Follow Me
@@ -136,8 +157,7 @@ export default function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-800/50 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-600 transition-all duration-300 hover:scale-110 glow-effect"
-                    aria-label={social.label}
+                    className="w-12 h-12 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-red-600/20 transition-all duration-300 hover:scale-110"
                   >
                     <social.icon className="w-6 h-6" />
                   </a>
@@ -146,117 +166,89 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <Card className="bg-gray-800/30 backdrop-blur-sm border-gray-700">
+          {/* RIGHT SIDE FORM */}
+          <Card className="bg-white/5 backdrop-blur-sm border-red-600/10">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-300 mb-2"
-                    >
-                      Your Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-                      placeholder="Wasi Haider"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-300 mb-2"
-                    >
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-                      placeholder="haiderwasi2263@gmail.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    required
-                    value={formData.subject}
+                  <InputField
+                    label="Your Name"
+                    id="name"
+                    value={formData.name}
                     onChange={(e) =>
-                      setFormData({ ...formData, subject: e.target.value })
+                      setFormData({ ...formData, name: e.target.value })
                     }
-                    className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-                    placeholder="Project Inquiry"
+                  />
+                  <InputField
+                    label="Email Address"
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                   />
                 </div>
 
+                <InputField
+                  label="Subject"
+                  id="subject"
+                  value={formData.subject}
+                  onChange={(e) =>
+                    setFormData({ ...formData, subject: e.target.value })
+                  }
+                />
+
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-300 mb-2"
-                  >
+                  <label className="block text-sm text-gray-300 mb-2">
                     Message
                   </label>
                   <Textarea
-                    id="message"
-                    name="message"
                     required
                     rows={6}
                     value={formData.message}
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500 resize-none"
-                    placeholder="Tell me about your project..."
+                    className="bg-[#0e0e11]/80 border-red-600/20 text-white focus:border-red-500 resize-none"
                   />
                 </div>
 
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-3 glow-effect transition-all duration-300 hover:scale-105"
+                  className="w-full bg-red-600/20 border border-red-500/60 text-red-100 font-medium py-3 transition-all duration-300 hover:bg-red-500/30 hover:scale-105"
                 >
-                  {isSubmitting ? (
-                    <div className="flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Sending...
-                    </div>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
-                    </>
-                  )}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
           </Card>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
+
+/* Small Reusable Input */
+function InputField({ label, id, type = "text", value, onChange }) {
+  return (
+    <div>
+      <label className="block text-sm text-gray-300 mb-2">{label}</label>
+      <Input
+        required
+        id={id}
+        type={type}
+        value={value}
+        onChange={onChange}
+        className="bg-[#0e0e11]/80 border-red-600/20 text-white focus:border-red-500"
+      />
+    </div>
+  );
+}
+
+
+
+// service id:- service_d1brc3d
+// template id:- template_svs4nyo
+// public key :-0nO8capgIlr5E2Cmt

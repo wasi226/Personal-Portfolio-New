@@ -1,12 +1,268 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: dark;
+  --bg-900: #0b0a16;
+  --bg-800: #141325;
+  --accent-1: #8b5cf6;
+  --accent-2: #ec4899;
+  --accent-3: #22d3ee;
+  --text-strong: #f8fafc;
+  --text-muted: #cbd5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg-900);
+  color: var(--text-strong);
+}
+
+section {
+  scroll-margin-top: 5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.section-padding {
+  padding: 6rem 0;
+}
+
 .bg-particles {
   background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
 .bg-mesh {
-  background-image: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15), transparent 25%),
-    radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.15), transparent 25%),
-    radial-gradient(circle at 50% 80%, rgba(34, 211, 238, 0.15), transparent 25%);
+  background-image: radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 85% 25%, rgba(59, 130, 246, 0.14), transparent 32%),
+    radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.12), transparent 35%);
+}
+
+.particles-overlay {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+}
+
+.particles-overlay::before,
+.particles-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+  will-change: transform;
+}
+
+.particles-overlay::after {
+  background-image: radial-gradient(rgba(255, 0, 0, 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+  animation-duration: 18s;
+}
+
+.particles-overlay::before {
+  animation: particles-drift 14s linear infinite;
+}
+
+.particles-overlay::after {
+  animation: particles-drift 22s linear infinite reverse;
+}
+
+@keyframes particles-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(240px, 240px, 0);
+  }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  filter: blur(6px);
+  transition: opacity 700ms ease, transform 700ms ease, filter 700ms ease;
+  will-change: opacity, transform, filter;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.scroll-indicator {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+}
+
+.scroll-indicator .chevrons {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.scroll-indicator .chevrons span {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  left: 6px;
+  top: 0;
+  opacity: 0;
+  animation: scroll-chevron 1.6s infinite;
+}
+
+.scroll-indicator .chevrons span:nth-child(2) {
+  top: 6px;
+  animation-delay: 0.2s;
+}
+
+.scroll-indicator .chevrons span:nth-child(3) {
+  top: 12px;
+  animation-delay: 0.4s;
+}
+
+@keyframes scroll-chevron {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) rotate(45deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(8px) rotate(45deg);
+  }
+}
+
+.control-button {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+  box-shadow: 0 0 0 rgba(0, 240, 255, 0);
+}
+
+.control-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 240, 255, 0.18);
+}
+
+.control-button:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.12);
+}
+
+.control-button:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.6);
+  outline-offset: 2px;
+}
+
+.control-button-ghost {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.control-button-ghost:hover {
+  border-color: rgba(34, 211, 238, 0.6);
+  background: rgba(34, 211, 238, 0.12);
+}
+
+/* 3D Box Enhanced Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), inset 0 0 30px rgba(0, 240, 255, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(0, 240, 255, 0.5), inset 0 0 40px rgba(0, 240, 255, 0.12);
+  }
+}
+
+@keyframes rotate-icon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes cube-rotate {
+  0% {
+    transform: rotateX(18deg) rotateY(0deg) rotateZ(-3deg);
+  }
+  35% {
+    transform: rotateX(28deg) rotateY(140deg) rotateZ(6deg);
+  }
+  70% {
+    transform: rotateX(14deg) rotateY(260deg) rotateZ(2deg);
+  }
+  100% {
+    transform: rotateX(18deg) rotateY(360deg) rotateZ(-3deg);
+  }
+}
+
+.cube-auto-rotate {
+  animation: cube-rotate 26s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.cube-face {
+  position: relative;
+  overflow: hidden;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+
+.hero-3d-box {
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero-3d-box:hover {
+  animation: glow-pulse 2s ease-in-out infinite;
 }

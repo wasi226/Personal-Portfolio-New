@@ -1,11 +1,10 @@
-
 import React from "react";
-import { Badge } from "@/components/ui/Badge";
-import { Card, CardContent } from "@/components/ui/Card";
-import { Code, Server, Database, Cloud, Brush, PenTool, GitBranch, Terminal, Layers,Brain } from "lucide-react";
+import { motion } from "framer-motion";
+import ParticlesBackground from "./ParticlesBackground";
+import { Code, Server, Brush, PenTool, GitBranch, Brain } from "lucide-react";
 import SkillCard from "./SkillCard";
 import { FaJava } from "react-icons/fa";
-import { SiThealgorithms,SiMongodb,SiExpress,SiJavascript } from "react-icons/si";
+import { SiThealgorithms, SiMongodb, SiExpress, SiJavascript } from "react-icons/si";
 import { TiHtml5 } from "react-icons/ti";
 
 export default function AboutSection() {
@@ -20,90 +19,174 @@ export default function AboutSection() {
     { name: "UI/UX Design", icon: Brush },
     { name: "Git & GitHub", icon: GitBranch },
     { name: "Java", icon: FaJava },
-    { name: "Data Structure & Algorithm", icon: SiThealgorithms },
-    { name: "AI", icon: Brain }    
-
+    { name: "DSA", icon: SiThealgorithms },
+    { name: "AI / ML", icon: Brain }
   ];
 
   return (
-    <section id="about" className="section-padding bg-black/20 backdrop-blur-sm">
-      <div className="container mx-auto px-6 py-10">
-        <div className="text-center mb-16">
-          <h2 className="text-6xl font-bold gradient-text mb-6 text-white">About Me</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+    <section
+      id="about"
+      className="relative w-full min-h-screen py-32 bg-black overflow-hidden"
+    >
+      {/* Softer Particles */}
+      <div className="absolute inset-0 opacity-50">
+        <ParticlesBackground />
+      </div>
+
+      {/* Cinematic Center Glow */}
+      <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 bg-red-600/10 blur-3xl rounded-full" />
+
+      <div className="container mx-auto px-6 relative z-10">
+
+        {/* Heading */}
+        <div className="text-center mb-24">
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-5xl md:text-6xl font-extrabold tracking-tight"
+          >
+            <span className="text-white">About </span>
+            <span className="text-red-500">Me</span>
+          </motion.h2>
+
+          <div className="h-[2px] w-24 bg-red-600 mx-auto mt-6" />
         </div>
-        
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Passionate Learner & Aspiring Developer
-            </h3>
-            <p className="text-gray-300 text-lg leading-relaxed">
-              I'm a technology enthusiast and student, currently pursuing my degree in Computer Science. I love turning complex problems into simple, 
-              beautiful designs. When I'm not coding, you'll find me exploring new technologies, 
-              participating in hackathons, or contributing to open-source projects.
-            </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
-              My journey in tech started with curiosity, and has 
-              evolved into a passion for creating seamless user experiences that make 
-              people's lives easier and more enjoyable.
-            </p>
+
+        {/* Layout */}
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
+
+          {/* LEFT COLUMN */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-16"
+          >
+            {/* Top Content */}
+            <div className="space-y-10">
+              <h3 className="text-3xl font-semibold text-white leading-snug">
+                Engineering Intelligent & Scalable Systems
+              </h3>
+
+              <p className="text-gray-400 text-lg leading-relaxed">
+                I am a Computer Science student dedicated to building
+                automation-driven, scalable digital systems that combine
+                clean architecture with seamless user experience.
+              </p>
+
+              <p className="text-gray-400 text-lg leading-relaxed">
+                My work focuses on system design, performance optimization,
+                and leveraging modern technologies to create impactful,
+                production-ready applications.
+              </p>
+
+              {/* Premium Glass Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                className="relative group rounded-2xl p-[1px] bg-gradient-to-r from-red-600/30 via-transparent to-red-600/30"
+              >
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 transition-all duration-500 group-hover:border-red-500/40">
+
+                  <div className="absolute inset-0 rounded-2xl bg-red-600/5 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
+
+                  <h4 className="text-lg font-semibold text-white mb-3 relative z-10">
+                    Current Focus
+                  </h4>
+
+                  <p className="text-gray-400 text-sm leading-relaxed relative z-10">
+                    Building scalable MERN stack applications and exploring
+                    AI-driven automation systems with production-grade
+                    architecture.
+                  </p>
+
+                </div>
+              </motion.div>
+            </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-8">
+            <div className="grid grid-cols-3 gap-6">
               {[
-                { number: "10+", label: "Projects Completed" },
-                { number: "10+", label: "Tech Skills" },
-                { number: "10+", label: "Certifications" }
-              ].map((stat, index) => (
-                <Card key={index} className="!bg-gray-800/50 backdrop-blur-sm border-gray-700">
-                  <CardContent className="p-6 text-center">
-                    <div className="text-2xl font-bold gradient-text text-white">{stat.number}</div>
-                    <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column - Skills */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">Skills & Technologies</h3>
-            <div className="grid grid-cols-3 gap-x-2 gap-y-0">
-              {skills.map((skill, index) => (
-                <SkillCard 
-                  key={skill.name}
-                  icon={skill.icon}
-                  title={skill.name}
-                  delay={index * 100}
-                />
-              ))}
-            </div>
-
-            {/* Skill Progress Bars */}
-            <div className="space-y-4 pt-4">
-              {[
-                { skill: "Frontend Development", level: 95 },
-                { skill: "Backend Development", level: 90 },
-                { skill: "UI/UX Design", level: 85 },
-                { skill: "AI & ML", level: 60 }
-              ].map((item, index) => (
-                <div key={item.skill} className="space-y-2 fade-in-up" style={{ animationDelay: `${200 + index * 100}ms`}}>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-300">{item.skill}</span>
-                    <span className="text-purple-400">{item.level}%</span>
+                { number: "15+", label: "Projects Built" },
+                { number: "12+", label: "Technologies" },
+                { number: "8+", label: "Certifications" }
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 text-center hover:border-red-500/40 transition-all duration-500"
+                >
+                  <div className="text-3xl font-bold text-red-500">
+                    {stat.number}
                   </div>
-                  <div className="w-full bg-gray-800 rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full glow-effect progress-animated"
-                      style={{ width: `${item.level}%` }}
-                    ></div>
+                  <div className="text-gray-400 text-sm mt-2">
+                    {stat.label}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
+
+          {/* RIGHT COLUMN */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-16"
+          >
+            {/* Skills */}
+            <div className="space-y-10">
+              <h3 className="text-2xl font-semibold text-white">
+                Technologies & Expertise
+              </h3>
+
+              <div className="grid grid-cols-3 gap-6">
+                {skills.map((skill, index) => (
+                  <SkillCard
+                    key={skill.name}
+                    icon={skill.icon}
+                    title={skill.name}
+                    delay={index * 100}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Progress Bars */}
+            <div className="space-y-6">
+              {[
+                { skill: "Frontend Engineering", level: 95 },
+                { skill: "Backend Systems", level: 90 },
+                { skill: "UI/UX Design", level: 85 },
+                { skill: "AI & ML", level: 65 }
+              ].map((item) => (
+                <div key={item.skill}>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-gray-300">{item.skill}</span>
+                    <span className="text-red-400">{item.level}%</span>
+                  </div>
+
+                  <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${item.level}%` }}
+                      transition={{ duration: 1.2 }}
+                      viewport={{ once: true }}
+                      className="h-2 bg-gradient-to-r from-red-600 via-red-500 to-red-700 rounded-full"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </motion.div>
+
         </div>
       </div>
     </section>
