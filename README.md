@@ -1,12 +1,86 @@
-# React + Vite
+# Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive developer portfolio built with React, Vite, and Tailwind CSS. It features animated sections, a modal gallery with a Swiper cards carousel, and clean, content-driven components for projects, certifications, and contact.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Smooth section navigation with a fixed navbar
+- Modal Gallery with image preview, zoom, and next/prev controls
+- Animated sections powered by Framer Motion
+- Data-driven content for projects, certifications, and workshops
+- Fully responsive layout
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React + Vite
+- Tailwind CSS
+- Framer Motion
+- Swiper
+- Lucide Icons
+
+## Getting Started
+
+### 1) Install
+
+```bash
+npm install
+```
+
+### 2) Run locally
+
+```bash
+npm run dev
+```
+
+### 3) Build
+
+```bash
+npm run build
+```
+
+### 4) Preview build
+
+```bash
+npm run preview
+```
+
+## Project Structure
+
+```
+public/
+src/
+  assets/
+  components/
+    portfolio/
+    ui/
+  data/
+  entities/
+  pages/
+  index.css
+  main.jsx
+```
+
+## Customization
+
+- Update content in:
+  - `src/data/projects.json`
+  - `src/data/certifications.json`
+  - `src/data/workshops.json`
+- Update gallery images in:
+  - `src/entities/Gallery.js`
+- Update section layout in:
+  - `src/pages/Portfolio.jsx`
+- Update branding and navigation in:
+  - `src/components/portfolio/Navigation.jsx`
+
+## Deployment
+
+Build the project and deploy the `dist/` folder to any static hosting provider (Vercel, Netlify, GitHub Pages, or your own server).
+
+## Credits
+
+Built with Vite, Tailwind CSS, Framer Motion, and Swiper.
+
+## License
+
+This project is for personal portfolio use. Update the license as needed.
