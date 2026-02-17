@@ -145,7 +145,7 @@ export default function GalleryCarousel() {
   }, [activeItem, handleClose, handleNext, handlePrev, handleZoomIn, handleZoomOut, handleZoomReset, zoomLevel]);
 
   return (
-    <div className="w-full flex items-center justify-center py-12">
+    <div className="w-full flex items-start justify-center pt-6 pb-12">
       <motion.div
         initial={{ opacity: 0, translateY: 30 }}
         whileInView={{ opacity: 1, translateY: 0 }}
