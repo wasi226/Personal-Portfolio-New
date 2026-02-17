@@ -38,7 +38,7 @@ export default function GalleryModal({ isOpen, onClose }) {
         >
           <div className="absolute inset-0" onClick={onClose}></div>
           <motion.div
-            className="relative z-10 mx-auto my-8 w-[min(1200px,92vw)] max-h-[88vh] overflow-hidden rounded-3xl border border-red-600/20 bg-gradient-to-br from-[#0f131f] to-[#080910] shadow-2xl"
+            className="relative z-10 mx-auto my-4 w-[min(1200px,92vw)] max-h-[92vh] overflow-hidden rounded-3xl border border-red-600/20 bg-gradient-to-br from-[#0f131f] to-[#080910] shadow-2xl"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 30, opacity: 0 }}
@@ -60,7 +60,7 @@ export default function GalleryModal({ isOpen, onClose }) {
               </button>
             </div>
 
-            <div className="px-6 py-6">
+            <div className="px-6 pb-2">
               <GalleryCarousel />
             </div>
           </motion.div>
