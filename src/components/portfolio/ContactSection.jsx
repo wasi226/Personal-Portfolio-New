@@ -19,37 +19,56 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  e.preventDefault();
 
-    try {
-      await emailjs.send(
-        "service_d1brc3d",
-        "template_svs4nyo", 
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        },
-        "0nO8capgIlr5E2Cmt"
-      );
+  // Manual Validation
+  if (
+    !formData.name.trim() ||
+    !formData.email.trim() ||
+    !formData.subject.trim() ||
+    !formData.message.trim()
+  ) {
+    alert("Please fill all fields before submitting ❗");
+    return;
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      alert("Message sent successfully 🚀");
+  if (!emailRegex.test(formData.email)) {
+    alert("Please enter a valid email address 📧");
+    return;
+  }
 
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      alert("Failed to send message ❌");
-    }
+  setIsSubmitting(true);
 
-    setIsSubmitting(false);
-  };
+  try {
+    await emailjs.send(
+      "service_d1brc3d",
+      "template_svs4nyo",
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      "0nO8capgIlr5E2Cmt"
+    );
+
+    alert("Message sent successfully 🚀");
+
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    alert("Failed to send message ❌");
+  }
+
+  setIsSubmitting(false);
+};
 
   const contactInfo = [
     {
